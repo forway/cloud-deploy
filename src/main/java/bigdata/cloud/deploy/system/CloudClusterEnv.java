@@ -82,9 +82,9 @@ public class CloudClusterEnv {
 	}
 	
 	/**
-	 * 初始化ip和组件的映射关系 ipComponentMap
+	 * 初始化ip到组件的映射关系 ipComponentMap
+	 * 初始化组件到ip的映射关系 componentToIPMap
 	 * 读取集群组件角色配置文件cloud-cluster.conf
-	 * ip和组件的映射关系的Map<String,Set<String>>，key是ip，value是该ip的组件集合
 	 * @return
 	 */
 	public static void initMap(){
@@ -140,6 +140,5 @@ public class CloudClusterEnv {
 	public static void initSlaveIpSet(){
 		slaveIpSet = CloudConfigUtil.readConfigFileToSet(CloudCommonEnv.CLOUD_SLAVES_FILE);
 	}
-
-
+	
 }
