@@ -30,7 +30,6 @@ public class SparkDeployUtil {
 	public static final String SPARK_ENV_FILE_KEY = "spark-env";
 	public static final String SPARK_DEFAULTS_FILE_KEY = "spark-defaults";
 	
-	
 	/**
 	 * 设置spark配置文件
 	 * 1、设置所有work节点的ip到slaves文件
@@ -122,6 +121,23 @@ public class SparkDeployUtil {
 			}
 		}
 		return sparkMasterIP;
+	}
+	
+	/**
+	 * 同步本节点配置文件	<br />
+	 * 把配置文件cloud-spark.conf的内容同步到各个节点  <br />
+	 * @param multiMap 每个文件对应的配置项map，其中key是fileKey，value是该文件对应的配置项map
+	 */
+	public static void synchronizeConfigFile(Map<String, Map<String, String>> multiMap) {
+		if(multiMap != null && multiMap.size() > 0){
+			for(String fileKey : multiMap.keySet()){
+				if(SPARK_ENV_FILE_KEY.equals(fileKey)){
+					CloudConfigUtil.writeMapToConfigFile(SPARK_ENV_FILE, multiMap.get(fileKey), SPARK_CONF_SPLIT);
+				} else if(SPARK_DEFAULTS_FILE_KEY.equals(fileKey)){
+					CloudConfigUtil.writeMapToConfigFile(SPARK_DEFAULTS_FILE, multiMap.get(fileKey), SPARK_CONF_SPLIT);
+				}
+			}
+		}
 	}
 	
 	// 卸载时，清除掉spark配置文件

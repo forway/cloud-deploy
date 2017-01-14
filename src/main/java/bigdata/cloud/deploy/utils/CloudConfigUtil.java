@@ -282,10 +282,5 @@ public class CloudConfigUtil {
 	}
 
 	
-	// 同步配置文件
-	public static void synchronizeConfigFile() {
-
-	}
-	
 
 }
