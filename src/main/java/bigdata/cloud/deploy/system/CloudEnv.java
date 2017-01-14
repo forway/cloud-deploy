@@ -44,7 +44,7 @@ public class CloudEnv {
 	 */
 	public static String getCloudMasterIp(){
 		if(cloudMasterIp == null || "".equals(cloudMasterIp)){
-			cloudEnvInit();
+			cloudEnvInit(); 
 		}
 		return cloudMasterIp;
 	}
