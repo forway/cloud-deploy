@@ -13,10 +13,10 @@ public class CloudCommonEnv {
 	//组件名和对应的线程名映射map
 	public static final Map<String, String> componentProcessMap = new HashMap<String, String>();
 	
-	//java scala
+	//java scala环境变量
 	public static final String JAVA_HOME = System.getenv("JAVA_HOME");
 	public static final String SCALA_HOME = System.getenv("SCALA_HOME");
-	// cloud environment variable
+	//cloud系统环境目录
 	public static final String seq = File.separator;
 	public static final String CLOUD_HOME = System.getenv("CLOUD_HOME");
 	public static final String CLOUD_BIN_PATH = CLOUD_HOME + seq + "bin";
@@ -24,7 +24,6 @@ public class CloudCommonEnv {
 	public static final String CLOUD_DATA_PATH = CLOUD_HOME + seq + "data";
 	public static final String CLOUD_LIB_PATH = CLOUD_HOME + seq + "lib";
 	public static final String CLOUD_APP_PATH = CLOUD_HOME + seq + "app";
-	
 	//各个组件名
 	public static final String CLOUD_LAUNCH = "cloud_launch";
 	public static final String ZOOKEEPER = "zookeeper";
@@ -34,7 +33,6 @@ public class CloudCommonEnv {
 	public static final String SPARK_MASTER = "spark_master";
 	public static final String SPARK_WORKER = "spark_worker";
 	public static final String MYSQL = "mysql";
-	
 	//各个组件对应的线程名
 	public static final String CLOUD_LAUNCH_PS = "cloud_launch";
 	public static final String ZOOKEEPER_PS = "QuorumPeerMain";
@@ -44,21 +42,22 @@ public class CloudCommonEnv {
 	public static final String SPARK_MASTER_PS = "Master";
 	public static final String SPARK_WORKER_PS = "Worker";
 	public static final String MYSQL_PS = "mysql";
+	//组件状态：启动、停止、不存在
+	public static final String STARTED = "started"; 			//已启动
+	public static final String STOPPED = "stopped";				//已停止
+	public static final String NON_EXISTED = "non_existed";		//不存在
+	//spark端口
+	public static final String SPARK_PORT = "7077";
 	
 	// 各个组件的配置文件键值对分隔符
 	public static final String CLOUD_INFO_SPLIT = ",";
 	public static final String CLOUD_CONF_SPLIT = "=";
-	public static final String CLOUD_ZOOKEEPER_CONF_SPLIT = "=";
-	public static final String CLOUD_REDIS_CONF_SPLIT = "";
-	// 注意：es的配置中=号之后，需要空一格，如：key: value
-	public static final String CLOUD_ELASTICSEARCH_CONF_SPLIT = ": "; 
-	public static final String CLOUD_KAFKA_CONF_SPLIT = "=";
-	public static final String CLOUD_MYSQL_CONF_SPLIT = "";
-	
-	//组件状态：启动、停止、不存在
-	public static final String STARTED = "started"; 
-	public static final String STOPPED = "stopped";
-	public static final String NON_EXISTED = "non_existed";
+	public static final String SPARK_CONF_SPLIT = "=";
+	public static final String ZOOKEEPER_CONF_SPLIT = "=";
+	public static final String REDIS_CONF_SPLIT = "";
+	public static final String ELASTICSEARCH_CONF_SPLIT = ": "; // 注意：es的配置中:号之后，需要空一格，如：key: value
+	public static final String KAFKA_CONF_SPLIT = "=";
+	public static final String MYSQL_CONF_SPLIT = "";
 
 	static {
 		//初始化组件名和线程名映射map

@@ -19,9 +19,9 @@ import bigdata.cloud.deploy.utils.CloudConfigUtil;
 public class CloudMasterEnv {
 	//配置key值和组件对应的map
 	private static Map<String, String> paramComponentMap = new HashMap<String, String>();
-	//ip和组件的映射关系
+	//ip和组件名的映射关系
 	private static Map<String, Set<String>> ipToComponentMap = new HashMap<String, Set<String>>();
-	//组件和ip的映射关系
+	//组件名和ip的映射关系
 	private static Map<String, Set<String>> componentToIPMap = new HashMap<String, Set<String>>();
 	//从节点ip集合
 	private static Set<String> slaveIpSet;
@@ -30,13 +30,6 @@ public class CloudMasterEnv {
 	private static final String seq = File.separator;
 	private static final String CLOUD_CLUSTER_CONF_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "cloud-cluster.conf";
 	private static final String CLOUD_SLAVES_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "cloud-slaves";
-	//主节点中各个组件对应的配置文件
-	public static final String CLOUD_SPARK_SLAVES_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "spark" + seq + "slaves";
-	public static final String CLOUD_SPARK_ENV_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "spark" + seq + "spark-env.sh";
-	public static final String CLOUD_SPARK_DEFAULTS_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "spark" + seq + "spark-defaults.conf";
-	
-	
-	
 	
 	//cloud组件角色配置文件key值，角色配置文件：cloud-cluster.conf
 	private static final String CLOUD_LAUNCH_HOSTS_KEY = "cloud.launch.hosts";
@@ -48,6 +41,14 @@ public class CloudMasterEnv {
 	private static final String CLOUD_KAFKA_HOSTS_KEY = "cloud.kafka.hosts";
 	private static final String CLOUD_ELASTICSEARCH_MASTER_HOSTS_KEY = "cloud.elasticsearch.master.hosts";
 	private static final String CLOUD_ELASTICSEARCH_DATA_HOSTS_KEY = "cloud.elasticsearch.data.hosts";
+
+	//主节点spark对应的配置文件
+	public static final String CLOUD_SPARK_SLAVES_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "spark" + seq + "slaves";
+	public static final String CLOUD_SPARK_ENV_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "spark" + seq + "spark-env.sh";
+	public static final String CLOUD_SPARK_DEFAULTS_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "spark" + seq + "spark-defaults.conf";
+	public static final String SPARK_LIB_PATH = CloudCommonEnv.CLOUD_LIB_PATH + seq + "spark" + seq + "*";		//spark任务依赖库目录
+	
+	
 	
 	/**
 	 * 获取 ip 到 组件的映射关系map
