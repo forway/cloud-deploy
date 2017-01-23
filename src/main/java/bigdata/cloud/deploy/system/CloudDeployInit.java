@@ -21,22 +21,20 @@ public class CloudDeployInit {
 	@PostConstruct
 	public void initAllInfo(){
 		
+		logger.info("cloud system initializing ......");
 		//判断该节点是否是主节点
 		if(CloudEnv.isCloudMaster()){
 			//如果是主节点，加载配置文件：cloud-cluster.conf，cloud-slaves
 			logger.info("current node is cloud master.");
 			logger.info("	init cloud cluster info ......");
-			CloudClusterEnv.initParamComponentMap();
-			CloudClusterEnv.initMap();
-			CloudClusterEnv.initSlaveIpSet();
+			CloudMasterEnv.initParamComponentMap();
+			CloudMasterEnv.initMap();
+			CloudMasterEnv.initSlaveIpSet();
 			logger.info("	init cloud cluster info finished.");
-
+			
 		}
 		
-		logger.info("current node is cloud slave.");
-		logger.info("	init cloud slave info ......");
 		CloudEnv.cloudEnvInit();
-		logger.info("	init cloud slave info finished.");
 		
 	}
 

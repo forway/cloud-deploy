@@ -1,5 +1,6 @@
 package bigdata.cloud.deploy.system;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -22,14 +23,17 @@ public class CloudEnv {
 	private static Set<String> allotComponentSet = new HashSet<String>();
 	
 	//cloud配置文件key值，角色配置文件：cloud.conf
+	private static final String seq = File.separator;
+	private static final String CLOUD_CONF_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "cloud.conf";
 	private static final String CLOUD_MASTER_HOST_KEY = "cloud.master.host";
 	private static final String CLOUD_NODE_COMPONENTS_KEY = "cloud.node.components";
+	
 	
 	/**
 	 * CloudEnv初始化
 	 */
 	public static void cloudEnvInit(){
-		Map<String, String> map = CloudConfigUtil.readConfigFileToMap(CloudCommonEnv.CLOUD_CONF_FILE, CloudCommonEnv.CLOUD_CONF_SPLIT);
+		Map<String, String> map = CloudConfigUtil.readConfigFileToMap(CLOUD_CONF_FILE, CloudCommonEnv.CLOUD_CONF_SPLIT);
 		cloudMasterIp = map.get(CLOUD_MASTER_HOST_KEY);
 		String componets = map.get(CLOUD_NODE_COMPONENTS_KEY);
 		if(componets != null) {

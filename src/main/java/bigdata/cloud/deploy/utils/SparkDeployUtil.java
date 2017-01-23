@@ -31,7 +31,7 @@ public class SparkDeployUtil {
 	public static final String SPARK_DEFAULTS_FILE_KEY = "spark-defaults";
 	
 	/**
-	 * 设置spark配置文件	<br />
+	 * 同步spark配置文件	<br />
 	 * 1、设置所有work节点的ip到slaves文件	<br />
 	 * 2、设置以下配置项到文件spark-env.sh：	<br />
 	 * export SPARK_MASTER_IP=hadoop1	<br />
@@ -49,7 +49,7 @@ public class SparkDeployUtil {
 	 * @param sparkWorkerIPSet spark从节点ip集合
 	 * @param cloudSparkEnvFileMap cloud spark的env配置项
 	 */
-	public static void installConfig(String sparkMasterIP, Set<String> sparkWorkerIPSet, Map<String, String> cloudSparkEnvFileMap){
+	public static void synchronizationConfig(String sparkMasterIP, Set<String> sparkWorkerIPSet, Map<String, String> cloudSparkEnvFileMap){
 		Map<String, String> map = new HashMap<String, String>();
 		//1、设置所有work节点的ip到slaves文件
 		CloudConfigUtil.writeSetToConfigFile(sparkWorkerIPSet, SPARK_SLAVES_FILE);
@@ -106,28 +106,6 @@ public class SparkDeployUtil {
 		 //停止spark从节点
 		String command = SPARK_HOME_PATH + seq + "sbin" + seq + "stop-slave.sh";
 		SystemUtil.runShell(command);
-	}
-	
-	/**
-	 * 同步本节点配置文件	<br />
-	 * 把配置文件cloud-spark.conf的内容同步到各个节点  <br />
-	 * @param multiMap 每个文件对应的配置项map，其中key是fileKey，value是该文件对应的配置项map
-	 */
-	public static void synchronizeConfigFile(Map<String, Map<String, String>> multiMap) {
-		if(multiMap != null && multiMap.size() > 0){
-			for(String fileKey : multiMap.keySet()){
-				if(SPARK_ENV_FILE_KEY.equals(fileKey)){
-					CloudConfigUtil.writeMapToConfigFile(SPARK_ENV_FILE, multiMap.get(fileKey), SPARK_CONF_SPLIT);
-				} else if(SPARK_DEFAULTS_FILE_KEY.equals(fileKey)){
-					CloudConfigUtil.writeMapToConfigFile(SPARK_DEFAULTS_FILE, multiMap.get(fileKey), SPARK_CONF_SPLIT);
-				}
-			}
-		}
-	}
-	
-	// 卸载时，清除掉spark配置文件
-	public static void clearConfigFile() {
-
 	}
 
 }

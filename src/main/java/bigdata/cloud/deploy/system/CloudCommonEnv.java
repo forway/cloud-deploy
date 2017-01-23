@@ -25,17 +25,6 @@ public class CloudCommonEnv {
 	public static final String CLOUD_LIB_PATH = CLOUD_HOME + seq + "lib";
 	public static final String CLOUD_APP_PATH = CLOUD_HOME + seq + "app";
 	
-	//cloud config file
-	public static final String CLOUD_CLUSTER_CONF_FILE = CLOUD_CONF_PATH + seq + "cloud-cluster.conf";
-	public static final String CLOUD_SLAVES_FILE = CLOUD_CONF_PATH + seq + "cloud-slaves";
-	public static final String CLOUD_CONF_FILE = CLOUD_CONF_PATH + seq + "cloud.conf";
-	public static final String CLOUD_ZOOKEEPER_CONF_FILE = CLOUD_CONF_PATH + seq + "cloud-zookeeper.conf";
-	public static final String CLOUD_SPARK_CONF_FILE = CLOUD_CONF_PATH + seq + "cloud-spark.conf";
-	public static final String CLOUD_REDIS_CONF_FILE = CLOUD_CONF_PATH + seq + "cloud-redis.conf";
-	public static final String CLOUD_ELASTICSEARCH_CONF_FILE = CLOUD_CONF_PATH + seq + "cloud-elasticsearch.conf";
-	public static final String CLOUD_KAFKA_CONF_FILE = CLOUD_CONF_PATH + seq + "cloud-kafka.conf";
-	public static final String CLOUD_MYSQL_CONF_FILE = CLOUD_CONF_PATH + seq + "cloud-mysql.conf";
-	
 	//各个组件名
 	public static final String CLOUD_LAUNCH = "cloud_launch";
 	public static final String ZOOKEEPER = "zookeeper";

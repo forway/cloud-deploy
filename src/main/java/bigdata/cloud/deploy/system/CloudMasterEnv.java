@@ -1,6 +1,7 @@
 package bigdata.cloud.deploy.system;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ import bigdata.cloud.deploy.utils.CloudConfigUtil;
  * @author hongliang
  *
  */
-public class CloudClusterEnv {
+public class CloudMasterEnv {
 	//配置key值和组件对应的map
 	private static Map<String, String> paramComponentMap = new HashMap<String, String>();
 	//ip和组件的映射关系
@@ -24,6 +25,18 @@ public class CloudClusterEnv {
 	private static Map<String, Set<String>> componentToIPMap = new HashMap<String, Set<String>>();
 	//从节点ip集合
 	private static Set<String> slaveIpSet;
+	
+	//主节点配置文件
+	private static final String seq = File.separator;
+	private static final String CLOUD_CLUSTER_CONF_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "cloud-cluster.conf";
+	private static final String CLOUD_SLAVES_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "cloud-slaves";
+	//主节点中各个组件对应的配置文件
+	public static final String CLOUD_SPARK_SLAVES_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "spark" + seq + "slaves";
+	public static final String CLOUD_SPARK_ENV_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "spark" + seq + "spark-env.sh";
+	public static final String CLOUD_SPARK_DEFAULTS_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "spark" + seq + "spark-defaults.conf";
+	
+	
+	
 	
 	//cloud组件角色配置文件key值，角色配置文件：cloud-cluster.conf
 	private static final String CLOUD_LAUNCH_HOSTS_KEY = "cloud.launch.hosts";
@@ -90,7 +103,7 @@ public class CloudClusterEnv {
 	public static void initMap(){
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader(CloudCommonEnv.CLOUD_CLUSTER_CONF_FILE));
+			br = new BufferedReader(new FileReader(CLOUD_CLUSTER_CONF_FILE));
 			//读取每一行，过滤掉注释“#”，而且必须包含key-value分割符
 			String line = br.readLine();
 			while(line != null && !line.startsWith("#")){
@@ -138,7 +151,7 @@ public class CloudClusterEnv {
 	 * 加载cloud-slaves文件
 	 */
 	public static void initSlaveIpSet(){
-		slaveIpSet = CloudConfigUtil.readConfigFileToSet(CloudCommonEnv.CLOUD_SLAVES_FILE);
+		slaveIpSet = CloudConfigUtil.readConfigFileToSet(CLOUD_SLAVES_FILE);
 	}
 	
 }
