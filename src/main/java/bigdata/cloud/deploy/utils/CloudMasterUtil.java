@@ -1,5 +1,6 @@
 package bigdata.cloud.deploy.utils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,9 +17,9 @@ import bigdata.cloud.deploy.system.CloudMasterEnv;
 public class CloudMasterUtil {
 	
 	/**
-	 * 同步配置文件到所有子节点
+	 * 推送配置文件到所有子节点
 	 */
-	public static void synchronizationConfig(){
+	public static void pushConfigFile(){
 		//推送spark配置文件
 		
 		
@@ -63,6 +64,29 @@ public class CloudMasterUtil {
 		map.put("spark.executor.extraClassPath", CloudMasterEnv.SPARK_LIB_PATH);
 		map.put("spark.driver.extraClassPath", CloudMasterEnv.SPARK_LIB_PATH);
 		CloudConfigUtil.writeMapToConfigFile(CloudMasterEnv.CLOUD_SPARK_DEFAULTS_FILE, map, CloudCommonEnv.SPARK_CONF_SPLIT);
+	}
+	
+	/**
+	 * 读取所有的配置文件，封装成map
+	 * key：文件名，value：配置信息
+	 * @return
+	 */
+	public static Map<String, Set<String>> readAllConfigToMap(){
+		Map<String, Set<String>> map = new HashMap<String, Set<String>>();
+		File confFile = new File(CloudCommonEnv.CLOUD_CONF_PATH);
+		File[] fileArray = confFile.listFiles();
+		for(File f : fileArray){
+			//如果是文件
+			if(f.isFile()){
+				Set<String> confSet = map.get(f.getName());
+				if(confSet == null){
+					
+				}
+				
+			}
+		}
+		
+		return null;
 	}
 	
 	
