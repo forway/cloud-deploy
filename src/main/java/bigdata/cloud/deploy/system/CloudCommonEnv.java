@@ -32,7 +32,6 @@ public class CloudCommonEnv {
 	public static final String KAFKA = "kafka";
 	public static final String SPARK_MASTER = "spark_master";
 	public static final String SPARK_WORKER = "spark_worker";
-	public static final String MYSQL = "mysql";
 	//各个组件对应的线程名
 	public static final String CLOUD_LAUNCH_PS = "cloud_launch";
 	public static final String ZOOKEEPER_PS = "QuorumPeerMain";
@@ -41,7 +40,6 @@ public class CloudCommonEnv {
 	public static final String KAFKA_PS = "Kafka";
 	public static final String SPARK_MASTER_PS = "Master";
 	public static final String SPARK_WORKER_PS = "Worker";
-	public static final String MYSQL_PS = "mysql";
 	//组件状态：启动、停止、不存在
 	public static final String STARTED = "started"; 			//已启动
 	public static final String STOPPED = "stopped";				//已停止
@@ -57,7 +55,6 @@ public class CloudCommonEnv {
 	public static final String REDIS_CONF_SPLIT = "";
 	public static final String ELASTICSEARCH_CONF_SPLIT = ": "; // 注意：es的配置中:号之后，需要空一格，如：key: value
 	public static final String KAFKA_CONF_SPLIT = "=";
-	public static final String MYSQL_CONF_SPLIT = "";
 
 	static {
 		//初始化组件名和线程名映射map
@@ -68,7 +65,6 @@ public class CloudCommonEnv {
 		componentProcessMap.put(KAFKA, KAFKA_PS);
 		componentProcessMap.put(SPARK_MASTER, SPARK_MASTER_PS);
 		componentProcessMap.put(SPARK_WORKER, SPARK_WORKER_PS);
-		componentProcessMap.put(MYSQL, MYSQL_PS);
 	}
 
 }

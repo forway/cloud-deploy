@@ -33,7 +33,6 @@ public class CloudMasterEnv {
 	
 	//cloud组件角色配置文件key值，角色配置文件：cloud-cluster.conf
 	private static final String CLOUD_LAUNCH_HOSTS_KEY = "cloud.launch.hosts";
-	private static final String CLOUD_MYSQL_HOSTS_KEY = "cloud.mysql.hosts";
 	private static final String CLOUD_ZOOKEEPER_HOSTS_KEY = "cloud.zookeeper.hosts";
 	private static final String CLOUD_SPARK_MASTER_HOST_KEY = "cloud.spark.master.host";
 	private static final String CLOUD_SPARK_WORKER_HOSTS_KEY = "cloud.spark.worker.hosts";
@@ -85,7 +84,6 @@ public class CloudMasterEnv {
 	 */
 	public static void initParamComponentMap(){
 		paramComponentMap.put(CLOUD_LAUNCH_HOSTS_KEY, CloudCommonEnv.CLOUD_LAUNCH);
-		paramComponentMap.put(CLOUD_MYSQL_HOSTS_KEY, CloudCommonEnv.MYSQL);
 		paramComponentMap.put(CLOUD_ZOOKEEPER_HOSTS_KEY, CloudCommonEnv.ZOOKEEPER);
 		paramComponentMap.put(CLOUD_SPARK_MASTER_HOST_KEY, CloudCommonEnv.SPARK_MASTER);
 		paramComponentMap.put(CLOUD_SPARK_WORKER_HOSTS_KEY, CloudCommonEnv.SPARK_WORKER);

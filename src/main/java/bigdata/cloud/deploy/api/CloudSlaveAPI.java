@@ -17,24 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class CloudSlaveAPI {
 	
 	/**
-	 * 本节点安装，设置配置文件信息
+	 * 本节点配置，设置配置文件信息
 	 * @param configMap 主节点推送过来的配置信息，key：配置文件名，value：配置信息
 	 * @return
 	 */
-	@RequestMapping("/install")
+	@RequestMapping("/config")
 	@ResponseBody
-	public String install(Map<String, Set<String>> configMap)
-	{
-		return null;
-	}
-	
-	/**
-	 * 还原本节点配置文件
-	 * @return
-	 */
-	@RequestMapping("/uninstall")
-	@ResponseBody
-	public String unInstall()
+	public String config(Map<String, Set<String>> configMap)
 	{
 		return null;
 	}

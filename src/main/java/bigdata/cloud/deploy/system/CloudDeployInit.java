@@ -25,14 +25,14 @@ public class CloudDeployInit {
 		//判断该节点是否是主节点
 		if(CloudEnv.isCloudMaster()){
 			//如果是主节点，加载配置文件：cloud-cluster.conf，cloud-slaves
-			logger.info("current node is cloud master.");
-			logger.info("	init cloud cluster info ......");
+			logger.info("	init cloud master info ......");
 			CloudMasterEnv.initParamComponentMap();
 			CloudMasterEnv.initMap();
 			CloudMasterEnv.initSlaveIpSet();
-			logger.info("	init cloud cluster info finished.");
+			logger.info("	init cloud master info finished.");
 			
 		}
+		
 		
 		CloudEnv.cloudEnvInit();
 		
