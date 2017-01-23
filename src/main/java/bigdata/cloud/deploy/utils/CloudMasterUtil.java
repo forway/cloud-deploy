@@ -16,6 +16,18 @@ import bigdata.cloud.deploy.system.CloudMasterEnv;
 public class CloudMasterUtil {
 	
 	/**
+	 * 同步配置文件到所有子节点
+	 */
+	public static void synchronizationConfig(){
+		//推送spark配置文件
+		
+		
+		
+	}
+	
+	
+	
+	/**
 	 * spark配置文件	<br />
 	 * 1、设置所有work节点的ip到slaves文件	<br />
 	 * 2、设置以下配置项到文件spark-env.sh：	<br />

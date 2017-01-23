@@ -14,12 +14,12 @@ import bigdata.cloud.deploy.system.Version;
  *
  */
 @RestController
-@RequestMapping("/cloud/deploy")
-public class CloudDeployAPI
+@RequestMapping("/cloud/system")
+public class CloudSystemAPI
 {
 	@Autowired
 	Version version;
-
+	
 	/**
 	 * 获取版本号等信息
 	 * @return

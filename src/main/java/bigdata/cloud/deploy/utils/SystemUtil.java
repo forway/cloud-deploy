@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * 系统工具类

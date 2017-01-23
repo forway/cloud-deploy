@@ -23,7 +23,7 @@ public class SparkDeployUtil {
 	 * 同步spark配置文件
 	 */
 	public static void synchronizationConfig(){
-
+		
 	}
 	
 	/**
