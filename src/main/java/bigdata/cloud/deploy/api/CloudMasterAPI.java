@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CloudMasterAPI {
 	
 	/**
-	 * cloud安装，配置主节点所有组件的配置文件，并推送到所有节点
+	 * cloud安装，配置主节点所有组件的配置文件，并推送配置文件到所有节点
 	 */
 	@RequestMapping("/install")
 	@ResponseBody
@@ -24,7 +24,7 @@ public class CloudMasterAPI {
 	}
 	
 	/**
-	 * cloud卸载，还原主节点所有组件的配置文件，并推送到所有节点
+	 * cloud卸载，还原主节点所有组件的配置文件，并推送配置文件到所有节点
 	 */
 	@RequestMapping("/uninstall")
 	@ResponseBody

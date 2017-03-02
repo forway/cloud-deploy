@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import bigdata.cloud.deploy.utils.CloudConfigUtil;
 
@@ -17,7 +18,7 @@ import bigdata.cloud.deploy.utils.CloudConfigUtil;
  *
  */
 public class CloudMasterEnv {
-	//配置key值和组件对应的map
+	//配置host key值和组件对应的map
 	private static Map<String, String> paramComponentMap = new HashMap<String, String>();
 	//ip和组件名的映射关系
 	private static Map<String, Set<String>> ipToComponentMap = new HashMap<String, Set<String>>();
@@ -46,8 +47,9 @@ public class CloudMasterEnv {
 	public static final String CLOUD_SPARK_ENV_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "spark" + seq + "spark-env.sh";
 	public static final String CLOUD_SPARK_DEFAULTS_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "spark" + seq + "spark-defaults.conf";
 	public static final String SPARK_LIB_PATH = CloudCommonEnv.CLOUD_LIB_PATH + seq + "spark" + seq + "*";		//spark任务依赖库目录
-	
-	
+	//主节点zookeeper对应配置文件
+	public static final String CLOUD_ZOO_CFG_FILE = CloudCommonEnv.CLOUD_CONF_PATH + seq + "zookeeper" + seq + "zoo.cfg";
+	public static final String ZOOKEEPER_TMP_PATH = CloudCommonEnv.CLOUD_APP_PATH + seq + "zookeeper" + seq + "tmp";
 	
 	/**
 	 * 获取 ip 到 组件的映射关系map
@@ -124,7 +126,7 @@ public class CloudMasterEnv {
 					//组件 到 ip 映射
 					Set<String> ipSet = componentToIPMap.get(componentName);
 					if(ipSet == null){
-						ipSet = new HashSet<String>();
+						ipSet = new TreeSet<String>();
 						ipSet.add(line);
 						componentToIPMap.put(componentName, ipSet);
 					} else {

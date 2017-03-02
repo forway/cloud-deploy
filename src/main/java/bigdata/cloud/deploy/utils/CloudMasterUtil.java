@@ -1,7 +1,6 @@
 package bigdata.cloud.deploy.utils;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -17,16 +16,12 @@ import bigdata.cloud.deploy.system.CloudMasterEnv;
 public class CloudMasterUtil {
 	
 	/**
-	 * 推送配置文件到所有子节点
+	 * 分配组件
 	 */
-	public static void pushConfigFile(){
-		//推送spark配置文件
-		
+	public void distributeComponent(){
 		
 		
 	}
-	
-	
 	
 	/**
 	 * spark配置文件	<br />
@@ -46,7 +41,7 @@ public class CloudMasterUtil {
 	public static void sparkConfig(){
 		
 		Map<String, String> map = new HashMap<String, String>();
-		String sparkMasterIP = new ArrayList<String>(CloudMasterEnv.getComponentToIPMap().get(CloudCommonEnv.SPARK_MASTER)).get(0);
+		String sparkMasterIP = getSparkMasterIP();
 		Set<String> sparkWorkerIPSet = CloudMasterEnv.getComponentToIPMap().get(CloudCommonEnv.SPARK_WORKER);
 		
 		//1、设置所有work节点的ip到slaves文件
@@ -65,6 +60,59 @@ public class CloudMasterUtil {
 		map.put("spark.driver.extraClassPath", CloudMasterEnv.SPARK_LIB_PATH);
 		CloudConfigUtil.writeMapToConfigFile(CloudMasterEnv.CLOUD_SPARK_DEFAULTS_FILE, map, CloudCommonEnv.SPARK_CONF_SPLIT);
 	}
+	
+	/**
+	 * zk配置
+	 * 1、zoo.cfg添加以下配置信息：
+	 * dataDir=../zk_home/tmp
+	 * server.1=ip1:2888:3888
+	 * server.2=ip2:2888:3888
+	 * server.3=ip3:2888:3888
+	 * 2、在zk的home目录新建tmp目录，并在tmp目录下新建myid文件，并在myid文件中配置相应的数字【该步骤在从节点】
+	 */
+	public static void zookeeperConfig(){
+		Set<String> ipSet = CloudMasterEnv.getComponentToIPMap().get(CloudCommonEnv.ZOOKEEPER);
+		Map<String, String> map = new HashMap<String, String>();
+		//1、zoo.cfg添加以下配置信息
+		map.put("dataDir", CloudMasterEnv.ZOOKEEPER_TMP_PATH);
+		int number = 1;
+		for(String ip : ipSet){
+			map.put("server." + number, ip + ":2888:3888");
+			number++;
+		}
+		CloudConfigUtil.writeMapToConfigFile(CloudMasterEnv.CLOUD_ZOO_CFG_FILE, map, CloudCommonEnv.ZOOKEEPER_CONF_SPLIT);
+	}
+	
+	/**
+	 * kafka配置
+	 * 添加以下配置信息：
+	 * broker.id=101
+	 * host.name=ip
+	 * zookeeper.connect=zk1:2181,zk2:2181,zk3:2181
+	 * log.dirs=/opt/blackhole/rtqueue
+	 * 
+	 */
+	public static void kafkaConfig(){
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	/**
+	 * 推送配置文件到所有子节点
+	 */
+	public static void pushConfigFile(){
+		//推送spark配置文件
+		
+		
+		
+	}
+	
 	
 	/**
 	 * 读取所有的配置文件，封装成map
@@ -89,7 +137,20 @@ public class CloudMasterUtil {
 		return null;
 	}
 	
-	
+	/**
+	 * 获取spark master ip
+	 * @return
+	 */
+	public static  String getSparkMasterIP(){
+		Set<String> sparkMasterIPSet = CloudMasterEnv.getComponentToIPMap().get(CloudCommonEnv.SPARK_MASTER);
+		String sparkMasterIP = "localhost";
+		if(sparkMasterIPSet != null && sparkMasterIPSet.size() > 0){
+			for(String ip : sparkMasterIPSet){
+				sparkMasterIP = ip;
+			}
+		}
+		return sparkMasterIP;
+	}
 	
 
 }
